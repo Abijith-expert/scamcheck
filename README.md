@@ -18,12 +18,10 @@ Download: https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/blob/main/Qwen3.5-4B-Q4
 SHA256: `00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4`
 
 ```bash
-llama-server -m path/to/Qwen3.5-4B-Q4_K_M.gguf --port 8080 -c 8192 --jinja --device CUDA0
-```
+llama-server -m path/to/Qwen3.5-4B-Q4_K_M.gguf --port 8080 -c 8192 --jinja -ngl 99 --device Vulkan1'''
 
-`llama-server --list-devices` shows the GPUs on your machine: replace `CUDA0` with yours.
-No NVIDIA GPU (or a llama.cpp build without CUDA): leave out `--device CUDA0`.
-`--jinja` is needed so that thinking can be turned off. Check it works with `python smoke_test.py`.
+and the note: "On my laptop (Vulkan build of llama.cpp) the NVIDIA GPU is Vulkan1; run llama-server --list-devices and use yours (e.g. CUDA0 on a CUDA build). Without --device, llama.cpp may split the model onto a weak integrated GPU and become very slow." Also add `python -m tools.tactics_eval` to the "Other scripts" line
+`
 
 ## Setup and run
 

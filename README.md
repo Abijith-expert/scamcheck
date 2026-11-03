@@ -18,10 +18,13 @@ Download: https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/blob/main/Qwen3.5-4B-Q4
 SHA256: `00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4`
 
 ```bash
-llama-server -m path/to/Qwen3.5-4B-Q4_K_M.gguf --port 8080 -c 8192 --jinja -ngl 99 --device Vulkan1'''
+llama-server -m path/to/Qwen3.5-4B-Q4_K_M.gguf --port 8080 -c 8192 --jinja -ngl 99 --device Vulkan1
+```
 
-and the note: "On my laptop (Vulkan build of llama.cpp) the NVIDIA GPU is Vulkan1; run llama-server --list-devices and use yours (e.g. CUDA0 on a CUDA build). Without --device, llama.cpp may split the model onto a weak integrated GPU and become very slow." Also add `python -m tools.tactics_eval` to the "Other scripts" line
-`
+On my laptop (Vulkan build of llama.cpp) the NVIDIA GPU is `Vulkan1`; run `llama-server --list-devices`
+and use yours (e.g. `CUDA0` on a CUDA build). Without `--device`, llama.cpp may split the model onto a
+weak integrated GPU and become very slow.
+`--jinja` is needed so that thinking can be turned off. Check it works with `python smoke_test.py`.
 
 ## Setup and run
 
@@ -42,7 +45,8 @@ Expected: download.py saves 5,574 rows, clean.py keeps 5,160 (4,128 train / 1,03
 model/report.md shows threshold 0.11 with F1 0.863. Different numbers mean the data is different.
 
 Other scripts (llama-server must be running), see EVIDENCE.md:
-`python -m agent.loop`, `python judge/qwen_judge.py`, `python -m bench.run`.
+`python -m agent.loop`, `python judge/qwen_judge.py`, `python -m bench.run`,
+`python -m tools.tactics_eval`.
 
 Careful: `python judge/qwen_judge.py` rewrites judge/scores.csv and judge/report.md, and
 `python -m bench.run` rewrites bench/results.md and the traces in traces/bench/, so the numbers in

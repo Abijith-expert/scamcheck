@@ -17,8 +17,6 @@ EXAMPLES = {
     "Spam example": "URGENT! We are trying to contact U. Todays draw shows that you have won a "
                     "£2000 prize GUARANTEED. Call 09058094507 from land line. Claim 3030. Valid 12hrs only",
     "Normal example": "Is that what time you want me to come?",
-    "French scam": "Colissimo : votre colis est bloqué. Vous devez payer 1,99 € maintenant "
-                   "pour la livraison : https://colissimo-suivi.example/payer",
 }
 
 st.set_page_config(page_title="ScamCheck")
@@ -26,7 +24,7 @@ st.title("ScamCheck")
 st.write("Paste a text message (SMS) and find out if it is a scam.")
 
 # example buttons: they fill the text box
-for column, (label, text) in zip(st.columns(3), EXAMPLES.items()):
+for column, (label, text) in zip(st.columns(2), EXAMPLES.items()):
     if column.button(label):
         st.session_state["sms"] = text
 

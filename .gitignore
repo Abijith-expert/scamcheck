@@ -1,0 +1,12 @@
+data/raw/
+*.pkl
+.env
+__pycache__/
+credentials.json
+token.json
+.venv/
+traces/bench_quick/
+
+# local tools and big files that must never be pushed
+.pytest_cache/
+*.gguf
